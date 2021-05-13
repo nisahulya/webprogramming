@@ -52,12 +52,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class="topnav" id="myTopnav">
-      <a href="#home" >
+      <a href="home.php" >
         <img src="../docs/images/logo.png" alt="logo" style="width:35px; height:25px;">
       </a>
       <a href="about-hotel.php" >About Hotel</a>
       <a href="customer-reservation.php">New Reservation</a>
-      <a href="#contact">My Reservations</a>
+      <a href="customer-reservation-update.php">My Reservations</a>
       <a style="float:right" href="#about">Logout</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
