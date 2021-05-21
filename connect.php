@@ -1,14 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "username";
-
-
-// Create connection
-$conn = mysqli_connect($servername, $username);
-
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+try{
+  $DatabaseConnection	=	new PDO("mysql:host=localhost;dbname=webprogramming;charset=UTF8", "root", "");
+  echo "Succesfully connected";
+}catch(PDOException $Exception){
+	echo "Connection failed:<br />" . $Exception->GetMessage();
+	die();
 }
-echo "Connected successfully";
 ?>
