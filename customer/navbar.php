@@ -1,3 +1,8 @@
+<?php 
+session_start(); ob_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -98,8 +103,27 @@
       </a>
       <a href="about-hotel.php" >About Hotel</a>
       <a href="customer-reservation.php">New Reservation</a>
-      <a href="customer-reservation-update.php">My Reservations</a>
-      <a style="float:right" data-toggle="modal" data-target="#loginModal" href="">Logout</a>
+      
+
+      <?php if(isset($_SESSION["User"])){ ?>
+        <a href="customer-reservation-update.php">My Reservations</a>
+      <?php }else{ ?>
+        
+      <?php } ?>
+
+    
+      <?php if(isset($_SESSION["User"])){ ?>
+      <a style="float:right"  href="home.php">Logout</a>
+      <?php }else{ ?>
+        <a style="float:right" data-toggle="modal" data-target="#loginModal" href="">Login</a>
+      <?php } ?>
+
+      <?php if(isset($_SESSION["User"])){ ?>
+      <a style="float:right"  href="home.php">Logout</a>
+      <?php }else{ ?>
+        <a style="float:right" data-toggle="modal" data-target="#registerModal" href="">Sign-up</a>
+      <?php } ?>
+
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
@@ -127,13 +151,14 @@
                         <input type="password" id="inputPassword" class="form-control"
                             placeholder="Password" required>
                         <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
-                        <button data-toggle="modal" data-target="#registerModal" class="btn btn-lg btn-info btn-block" type="submit" data-dismiss="modal">Sign in</button>
+                        <!-- <button data-toggle="modal" data-target="#registerModal" class="btn btn-lg btn-info btn-block" type="submit" data-dismiss="modal">Sign in</button> -->
                         <p class="my-2 text-muted p-0">&copy; nisahulya</p>
                     </form>
                 </div>
             </div>
         </div>
       </div>
+
 
       <div class="modal fade text-center" id="registerModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,7 +174,7 @@
                 <div class="modal-body p-0">
                     <form class="form-signin pb-2">
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign-in</h1>
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign-up</h1>
                         <label for="userName" class="sr-only">First Name</label>
                         <input type="text" id="userName" class="form-control " placeholder="First Name"
                             required autofocus>
@@ -171,7 +196,7 @@
                             placeholder="Password" required>
     
                         <button data-toggle="modal" data-target="#registerModal"
-                            class="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
+                            class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
                         <p class="my-2 text-muted p-0">&copy; nisahulya</p>
                     </form>
                 </div>
