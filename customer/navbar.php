@@ -27,7 +27,7 @@ session_start(); ob_start();
       /* Change the color of links on hover */
       .topnav a:hover {
         background-color: #60d9eb;
-
+        text-decoration: none;
       }
 
       /* Add an active class to highlight the current page */
@@ -129,6 +129,7 @@ session_start(); ob_start();
       </a>
     </div>
 
+  
     <div class="modal fade text-center" id="loginModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -141,7 +142,7 @@ session_start(); ob_start();
                     </button>
                 </div>
                 <div class="modal-body p-0">
-                    <form class="form-signin pb-2">
+                    <form class="form-signin pb-2" action="memberlogin.php" method="post">
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
                         <label for="inputEmail" class="sr-only">User Name</label>
@@ -150,7 +151,7 @@ session_start(); ob_start();
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control"
                             placeholder="Password" required>
-                        <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+                        <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
                         <!-- <button data-toggle="modal" data-target="#registerModal" class="btn btn-lg btn-info btn-block" type="submit" data-dismiss="modal">Sign in</button> -->
                         <p class="my-2 text-muted p-0">&copy; nisahulya</p>
                     </form>
