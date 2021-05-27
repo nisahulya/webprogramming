@@ -1,5 +1,5 @@
 <?php 
-session_start(); ob_start();
+  require_once("../connect.php");
 
 ?>
 
@@ -113,13 +113,13 @@ session_start(); ob_start();
 
     
       <?php if(isset($_SESSION["User"])){ ?>
-      <a style="float:right"  href="home.php">Logout</a>
+      <a style="float:right"  href="exit.php">Logout</a>
       <?php }else{ ?>
         <a style="float:right" data-toggle="modal" data-target="#loginModal" href="">Login</a>
       <?php } ?>
 
       <?php if(isset($_SESSION["User"])){ ?>
-      <a style="float:right"  href="home.php">Logout</a>
+
       <?php }else{ ?>
         <a style="float:right" data-toggle="modal" data-target="#registerModal" href="">Sign-up</a>
       <?php } ?>
@@ -145,13 +145,13 @@ session_start(); ob_start();
                     <form class="form-signin pb-2" action="memberlogin.php" method="post">
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
-                        <label for="inputEmail" class="sr-only">User Name</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="User Name"
+                        <label  class="sr-only" >User Name</label>
+                        <input type="text"  class="form-control" placeholder="User Name" name="username"
                             required autofocus>
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control"
-                            placeholder="Password" required>
-                        <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
+                            placeholder="Password" name="password" required>
+                        <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                         <!-- <button data-toggle="modal" data-target="#registerModal" class="btn btn-lg btn-info btn-block" type="submit" data-dismiss="modal">Sign in</button> -->
                         <p class="my-2 text-muted p-0">&copy; nisahulya</p>
                     </form>
@@ -173,31 +173,39 @@ session_start(); ob_start();
                     </button>
                 </div>
                 <div class="modal-body p-0">
-                    <form class="form-signin pb-2">
+                    <form class="form-signin pb-2" action="signupresult.php" method="post">
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please sign-up</h1>
+                        <label  class="sr-only">Username</label>
+                        <input type="text"  name="username" id="userName" class="form-control " placeholder="Username"
+                            required autofocus>
+
                         <label for="userName" class="sr-only">First Name</label>
-                        <input type="text" id="userName" class="form-control " placeholder="First Name"
+                        <input type="text"  name="first_name" id="userName" class="form-control " placeholder="First Name"
                             required autofocus>
     
                         <label for="userlastName" class="sr-only">Last Name</label>
-                        <input type="text" id="userlastName" class="form-control "
+                        <input type="text"  name="last_name" id="userlastName" class="form-control "
                             placeholder="Last Name" required>
     
                         <label for="userPhone" class="sr-only">Phone Number</label>
-                        <input type="text" id="userPhone" class="form-control "
+                        <input type="text"  name="tel_no" id="userPhone" class="form-control "
                             placeholder="Phone Number" required>
+
+                            <label for="userTcNo" class="sr-only">Tc No</label>
+                        <input type="text"  name="tc_no" id="userTC" class="form-control "
+                            placeholder="Tc No" required>
     
                         <label for="inputEmail" class="sr-only">E-Mail</label>
-                        <input type="email" id="inputEmail" class="form-control " placeholder="E-Mail"
+                        <input type="email"  name="email" id="inputEmail" class="form-control " placeholder="E-Mail"
                             required>
     
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control"
+                        <input type="password" name="password" id="inputPassword" class="form-control"
                             placeholder="Password" required>
     
-                        <button data-toggle="modal" data-target="#registerModal"
-                            class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
+                        <input  data-toggle="modal" data-target="#signupresultModal"
+                            class="btn btn-lg btn-success btn-block" type="submit"  value="Sign-up">
                         <p class="my-2 text-muted p-0">&copy; nisahulya</p>
                     </form>
                 </div>
@@ -225,3 +233,7 @@ session_start(); ob_start();
   </body>
 
 </html>
+
+<?php
+// $DatabaseConnection	=	null;
+?>
