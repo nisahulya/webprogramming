@@ -23,7 +23,8 @@
 
   if($ControlNumber>0){
     $_SESSION["User"]	=	$ComingUserName;
-    header("Location:home.php");
+    // echo "Hello $ComingUserName. You have successfully logged in. You can continue your operation.";
+    header("Location:successlogin.php");
     exit();
   }else{
     echo "HATA<br />";

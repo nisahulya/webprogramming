@@ -17,4 +17,19 @@ function Filter($Value){
 	$Result	=	$Three;
 	return $Result;
 }
+
+if(isset($_SESSION["User"])){
+	$UsersQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=?");
+	$UsersQuery->execute([$_SESSION["User"]]);
+	$UsersRecordNumber		=	$UsersQuery->rowCount();
+	$UsersRecord			=	$UsersQuery->fetch(PDO::FETCH_ASSOC);
+	
+	if($UsersRecordNumber>0){
+		$UserFirstName	=	$UsersRecord["first_name"];
+		$UserLastName = $UsersRecord["last_name"];
+	}else{
+		$UserFirstName	=	"";
+		$UserLastName	=	"";
+	}
+}
 ?>

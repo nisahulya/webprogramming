@@ -57,8 +57,8 @@ $ControlQuery->execute([$ComingUsername, $ComingEmail]);
 $ComingNumber			=	$ControlQuery->rowCount();
 
 if($ComingNumber>0){
-	echo "HATA<br />";
-	echo "Kullanıcı Adı veya E-Mail Adresi Başka Bir Üye Tarafından Kullanılmaktadır.<br />";
+	echo "ERROR<br />";
+	echo "Username or e-mail address is used by another member. <br />";
 }else{
 	$AddRecord			=	$DatabaseConnection->prepare("INSERT INTO user (username, password, first_name, last_name,
     email, tel_no, tc_no) values (?, ?, ?, ?, ?, ?, ?)");
@@ -67,12 +67,13 @@ if($ComingNumber>0){
 	$ControlRecord		=	$AddRecord->rowCount();
 	
 	if($ControlRecord>0){
-		
+		echo "CONGRATULATIONS<br />";
+		echo "User registration successfully completed. <br />";
 	}else{
-		echo "HATA<br />";
-		echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
-		echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
-		echo "Ana Sayafaya Dönmek İçin Lütfen Buraya .";
+		echo "ERROR";
+		echo "An Unexpected Error Occurred During User Registration.		.<br />";
+		echo "Please try again later.<br />";
+		// echo "Ana Sayafaya Dönmek İçin Lütfen Buraya .";
 	}
 }
 ?>
