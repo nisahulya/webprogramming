@@ -71,7 +71,7 @@ if($ComingNumber>0){
 		echo "User registration successfully completed. <br />";
 	}else{
 		echo "ERROR";
-		echo "An Unexpected Error Occurred During User Registration.		.<br />";
+		echo "An Unexpected Error Occurred During User Registration.<br />";
 		echo "Please try again later.<br />";
 		// echo "Ana Sayafaya Dönmek İçin Lütfen Buraya .";
 	}

@@ -149,7 +149,7 @@
                         <input type="text"  class="form-control" placeholder="User Name" name="username"
                             required autofocus>
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control"
+                        <input type="password"  class="form-control"
                             placeholder="Password" name="password" required>
                         <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                         <!-- <button data-toggle="modal" data-target="#registerModal" class="btn btn-lg btn-info btn-block" type="submit" data-dismiss="modal">Sign in</button> -->
@@ -177,7 +177,7 @@
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please sign-up</h1>
                         <label  class="sr-only">Username</label>
-                        <input type="text"  name="username" id="userName" class="form-control " placeholder="Username"
+                        <input type="text"  name="username"  class="form-control " placeholder="Username"
                             required autofocus>
 
                         <label for="userName" class="sr-only">First Name</label>
