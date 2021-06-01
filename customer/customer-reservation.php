@@ -59,7 +59,7 @@
                 <br>
                 <!-- <button class="btn btn-info">Search</button> -->
 
-                <input type="submit" value="Search" >
+                <input type="submit" class="btn btn-info"value="Search" >
                 </form>
             </div>
 

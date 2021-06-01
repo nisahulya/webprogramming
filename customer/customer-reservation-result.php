@@ -20,18 +20,18 @@
         $ComingNumberOfPerson		=	"";
     }
 
-    $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
-    $AddReservation->execute([$ComingCheckOutDate, 1, 1, $ComingCheckInDate, $ComingNumberOfPerson, 500]);
-    $RecordControl		=	$AddReservation->rowCount();
+    // $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
+    // $AddReservation->execute([$ComingCheckOutDate, 1, 1, $ComingCheckInDate, $ComingNumberOfPerson, 500]);
+    // $RecordControl		=	$AddReservation->rowCount();
                             
-    if ($RecordControl>0) {
-        echo "TEBRİKLER<br />";
-        echo "Reservation added";
-    } else {
-         echo "HATA<br />";
-        echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
-        echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
-    }
+    // if ($RecordControl>0) {
+    //     echo "TEBRİKLER<br />";
+    //     echo "Reservation added";
+    // } else {
+    //      echo "HATA<br />";
+    //     echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
+    //     echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
+    // }
 ?>
 
 

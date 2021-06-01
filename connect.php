@@ -2,13 +2,18 @@
 
 session_start(); ob_start();
 
-try{
-  $DatabaseConnection	=	new PDO("mysql:host=localhost;dbname=webprogramming;charset=UTF8", "root", "");
-  echo "Succesfully connected";
-}catch(PDOException $Exception){
-	echo "Connection failed:<br />" . $Exception->GetMessage();
-	die();
+$servername = "localhost";
+$username = "username";
+
+
+// Create connection
+$DatabaseConnection = mysqli_connect($servername, $username);
+
+// Check connection
+if (!$DatabaseConnection) {
+  die("Connection failed: " . mysqli_connect_error());
 }
+echo "Connected successfully";
 
 function Filter($Value){
 	$One	=	trim($Value);

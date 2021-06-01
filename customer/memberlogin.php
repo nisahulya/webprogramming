@@ -16,12 +16,15 @@
     $ComingPassword				=	"";
   }
 
-  $ControlQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=? AND password=?");
-  $ControlQuery->execute([$ComingUserName, $ComingPassword]);
+  $ControlQuery ="SELECT * FROM user WHERE username=$ComingUserName AND password=$ComingPassword" ;
+  $result = mysqli_query($DatabaseConnection, $ControlQuery);
 
-  $ControlNumber			=	$ControlQuery->rowCount();
+  // $ControlQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=? AND password=?");
+  // $ControlQuery->execute([$ComingUserName, $ComingPassword]);
 
-  if($ControlNumber>0){
+  // $ControlNumber			=	$ControlQuery->rowCount();
+
+  if(mysqli_affected_rows($DatabaseConnection) > 0){
     $_SESSION["User"]	=	$ComingUserName;
     // echo "Hello $ComingUserName. You have successfully logged in. You can continue your operation.";
     header("Location:successlogin.php");
