@@ -2,18 +2,13 @@
 
 session_start(); ob_start();
 
-$servername = "localhost";
-$username = "username";
-
-
-// Create connection
-$DatabaseConnection = mysqli_connect($servername, $username);
-
-// Check connection
-if (!$DatabaseConnection) {
-  die("Connection failed: " . mysqli_connect_error());
+try{
+  $DatabaseConnection	=	new PDO("mysql:host=localhost;dbname=webprogramming;charset=UTF8", "root", "");
+  echo "Succesfully connected";
+}catch(PDOException $Exception){
+	echo "Connection failed:<br />" . $Exception->GetMessage();
+	die();
 }
-echo "Connected successfully";
 
 function Filter($Value){
 	$One	=	trim($Value);
@@ -22,7 +17,6 @@ function Filter($Value){
 	$Result	=	$Three;
 	return $Result;
 }
-
 if(isset($_SESSION["User"])){
 	$UsersQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=?");
 	$UsersQuery->execute([$_SESSION["User"]]);
