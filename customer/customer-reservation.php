@@ -36,7 +36,6 @@
             <div class="col-sm-6">
                 <form action="customer-reservation-result.php" method="post">
                     <br>
-                    <br>
                     <h4 for="check-in">Enter Dates:</h4>
 
                     <label for="check-in">Check-in:</label>

@@ -1,6 +1,7 @@
 <?php include 'navbar.php'; ?>
 <?php include 'footer.php'; ?>
 <?php
+    
     if (isset($_POST["checkout_date"])) {
         $ComingCheckOutDate		=	$_POST["checkout_date"];
     } else {
@@ -17,19 +18,61 @@
         $ComingNumberOfPerson		=	"";
     }
 
-    $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
-    $AddReservation->execute([$ComingCheckOutDate, 1, 1, $ComingCheckInDate, $ComingNumberOfPerson, 500]);
-    $RecordControl		=	$AddReservation->rowCount();
 
+    $SearchEmptyRoomQuery =	$DatabaseConnection->prepare("SELECT room.room_id 
+    FROM room 
+    WHERE room.room_id NOT IN 
+(
+    SELECT R.room_id 
+	FROM reservation R 
+	JOIN status S ON R.reservation_id = S.reservation_id 
+	WHERE R.checkin_date<? AND R.checkout_date>?
+) AND room.number_of_person = ?");
+    $SearchEmptyRoomQuery->execute([$ComingCheckInDate, $ComingCheckOutDate, $ComingNumberOfPerson]);;
+    $RecordControl		=	$SearchEmptyRoomQuery->rowCount();
 
     if ($RecordControl>0) {
-        echo "TEBRİKLER<br />";
-        echo "Reservation added";
+        echo "CONGRUGULATİONS <br />";
     } else {
-         echo "HATA<br />";
-        echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
-        echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
+         echo "ERROR <br />";
     }
+
+    $EmptyRoomsRecord = $SearchEmptyRoomQuery->fetchAll(PDO::FETCH_ASSOC);
+    foreach($EmptyRoomsRecord as $Record){
+        $roomid		=	$Record["room_id"];
+        echo $roomid."<br />";
+    }
+
+
+    // if (isset($_POST["checkout_date"])) {
+    //     $ComingCheckOutDate		=	$_POST["checkout_date"];
+    // } else {
+    //     $ComingCheckOutDate		=	"";
+    // }
+    // if (isset($_POST["checkin_date"])) {
+    //     $ComingCheckInDate		=	$_POST["checkin_date"];
+    // } else {
+    //     $ComingCheckInDate		=	"";
+    // }
+    // if (isset($_POST["number_of_person"])) {
+    //     $ComingNumberOfPerson		=	$_POST["number_of_person"];
+    // } else {
+    //     $ComingNumberOfPerson		=	"";
+    // }
+
+    // $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
+    // $AddReservation->execute([$ComingCheckOutDate, 1, 1, $ComingCheckInDate, $ComingNumberOfPerson, 500]);
+    // $RecordControl		=	$AddReservation->rowCount();
+
+
+    // if ($RecordControl>0) {
+    //     echo "TEBRİKLER<br />";
+    //     echo "Reservation added";
+    // } else {
+    //      echo "HATA<br />";
+    //     echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
+    //     echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
+    // }
 ?>
 
 
