@@ -26,9 +26,11 @@ if(isset($_SESSION["User"])){
 	if($UsersRecordNumber>0){
 		$UserFirstName	=	$UsersRecord["first_name"];
 		$UserLastName = $UsersRecord["last_name"];
+		$Userid = $UsersRecord["user_id"];
 	}else{
 		$UserFirstName	=	"";
 		$UserLastName	=	"";
+		$Userid	=	"";
 	}
 }
 ?>

@@ -21,10 +21,14 @@
   $ControlNumber			=	$ControlQuery->rowCount();
 
 
-  if($ControlNumber>0){
+  if(($ControlNumber>0) && ($_SERVER['HTTP_REFERER']=="https://localhost/webprogramming/customer/customer-reservation-result.php")){
     $_SESSION["User"]	=	$ComingUserName;
-    echo "Hello $ComingUserName. You have successfully logged in. You can continue your operation.";
-    header("Location:successlogin.php");
+    header("Location:customer-reservation.php" );
+    exit();
+  }elseif($ControlNumber>0){
+    $_SESSION["User"]	=	$ComingUserName;
+    echo "Hello $ComingUserName. You have successfully logged in.";
+    header("Location:successlogin.php" );
     exit();
   }else{
     echo "HATA<br />";
