@@ -32,7 +32,7 @@
     $RecordControl		=	$SearchEmptyRoomQuery->rowCount();
 
     if ($RecordControl>0) {
-        echo "CONGRUGULATİONS <br />";
+        echo "CONGRUGULATIONS <br />";
     } else {
          echo "ERROR <br />";
     }
@@ -41,37 +41,6 @@
     $selectedRoom = $EmptyRoomsRecord["room_id"];
     echo $selectedRoom."<br />";
     
-
-    
-    // if (isset($_POST["checkout_date"])) {
-    //     $ComingCheckOutDate		=	$_POST["checkout_date"];
-    // } else {
-    //     $ComingCheckOutDate		=	"";
-    // }
-    // if (isset($_POST["checkin_date"])) {
-    //     $ComingCheckInDate		=	$_POST["checkin_date"];
-    // } else {
-    //     $ComingCheckInDate		=	"";
-    // }
-    // if (isset($_POST["number_of_person"])) {
-    //     $ComingNumberOfPerson		=	$_POST["number_of_person"];
-    // } else {
-    //     $ComingNumberOfPerson		=	"";
-    // }
-
-    // $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
-    // $AddReservation->execute([$ComingCheckOutDate, 1, 1, $ComingCheckInDate, $ComingNumberOfPerson, 500]);
-    // $RecordControl		=	$AddReservation->rowCount();
-
-
-    // if ($RecordControl>0) {
-    //     echo "TEBRİKLER<br />";
-    //     echo "Reservation added";
-    // } else {
-    //      echo "HATA<br />";
-    //     echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
-    //     echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
-    // }
 ?>
 
 <div class="container">
@@ -104,36 +73,50 @@
                 }
             ?>
             </h4>
-            <br>
-            <!-- <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Confirm</button> -->
-            <form action="customer-reservation-result.php" method="POST">
-                <input type="submit" name="submitbutton" value="Confirm" class="btn btn-info" data-toggle="modal"
-                data-target="#myModal" />
-            </form>            
         </div>
     </div>
 </div>
 
 
 <?php 
-if (isset($_SESSION['User']) && isset($_POST['submitbutton'])) { ?>
-<?php
-    $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation 
-    (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) values (?, ?, ?, ?, ?, ?)");
-    $AddReservation->execute([$ComingCheckOutDate, $selectedRoom, $Userid, $ComingCheckInDate, $ComingNumberOfPerson, $totalPrice]);
-    $RecordControl		=	$AddReservation->rowCount();
+if (isset($_SESSION['User'])) {
+?>
+
+<form action="customer-reservation-added.php" method="POST">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <input type="submit" name="submitbutton" value="Confirm" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="ComingCheckInDate" name="ComingCheckInDate" value="<?php echo $ComingCheckInDate;?>">
+
+    <input type="hidden" id="ComingCheckOutDate" name="ComingCheckOutDate" value="<?php echo $ComingCheckOutDate;?>">
+
+    <input type="hidden" id="ComingNumberOfPerson" name="ComingNumberOfPerson"
+        value="<?php echo $ComingNumberOfPerson;?>">
+
+    <input type="hidden" id="selectedRoom" name="selectedRoom" value="<?php echo $selectedRoom;?>">
+
+    <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice;?>">
+
+    <input type="hidden" id="Userid" name="Userid" value="<?php echo $Userid;?>">
+</form>
 
 
-    if ($RecordControl>0) {
-        echo "TEBRİKLER<br />";
-        echo "Reservation added";
-    } else {
-         echo "HATA<br />";
-        echo "Kullanıcı Kaydı İşlemi Sırasında Beklenmeyen Bir Hata Oluştu.<br />";
-        echo "Lütfen Daha Sonra Tekrar Deneyiniz.<br />";
-    }
-    ?>
 <?php } else { ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <input type="submit" value="Confirm" class="btn btn-info" data-toggle="modal" data-target="#myModal" />
+        </div>
+    </div>
+</div>
 
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
