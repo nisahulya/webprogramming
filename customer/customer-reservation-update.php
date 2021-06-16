@@ -23,7 +23,7 @@
 
     <?php  
 
-$SearchByReservationIdQuery	=	$DatabaseConnection->prepare("SELECT number_of_person, room_id, checkin_date, checkout_date 
+$SearchByReservationIdQuery	=	$DatabaseConnection->prepare("SELECT reservation_id, number_of_person, room_id, checkin_date, checkout_date 
 FROM reservation WHERE user_id=? ");
 
 $SearchByReservationIdQuery->execute([$Userid]);
@@ -33,10 +33,12 @@ $ThisNumberOfPerson = $ThisReservation["number_of_person"];
 $ThisRoomId = $ThisReservation["room_id"];
 $ThisCheckinDate = $ThisReservation["checkin_date"];
 $ThisCheckoutDate = $ThisReservation["checkout_date"];
+$ThisReservationId = $ThisReservation["reservation_id"];
 // echo $ThisNumberOfPerson;  
 // echo $ThisRoomId;  
 // echo $ThisCheckinDate; 
-// echo $ThisCheckoutDate;  
+// echo $ThisCheckoutDate; 
+ 
 
 ?>
     <div class="container">
@@ -68,7 +70,6 @@ $ThisCheckoutDate = $ThisReservation["checkout_date"];
                 </div>
             </div>
 
-
             <div class="col-sm-6">
                 <form action="update-reservation-information.php" method="post">
                     <br>
@@ -90,7 +91,7 @@ $ThisCheckoutDate = $ThisReservation["checkout_date"];
                         <input type="number" value="<?php echo $ThisNumberOfPerson;?>" class="form-control" id="numberofguests" name="number_of_person">
                     </div>
                     <br>
-
+                    <input type="hidden" value="<?php echo $ThisReservationId;?>"  id="reservation_id" name="reservation_id">
                     <input type="submit" class="btn btn-info" value="Update">
                 </form>
             </div>

@@ -17,29 +17,34 @@
     } else {
         $ComingNumberOfPerson		=	"";
     }
+    if (isset($_POST["reservation_id"])) {
+        $ComingReservationId		=	$_POST["reservation_id"];
+    } else {
+        $ComingReservationId		=	"";
+    }
 
-
+    // echo $ComingReservationId;
     $SearchEmptyRoomQuery =	$DatabaseConnection->prepare("SELECT room.room_id 
     FROM room 
     WHERE room.room_id NOT IN 
-(
+    (
     SELECT R.room_id 
 	FROM reservation R 
 	JOIN status S ON R.reservation_id = S.reservation_id 
 	WHERE R.checkin_date<? AND R.checkout_date>?
-) AND room.number_of_person = ?");
+    ) AND room.number_of_person = ?");
     $SearchEmptyRoomQuery->execute([$ComingCheckInDate, $ComingCheckOutDate, $ComingNumberOfPerson]);;
     $RecordControl		=	$SearchEmptyRoomQuery->rowCount();
 
-    if ($RecordControl>0) {
-        echo "CONGRUGULATIONS <br />";
-    } else {
-         echo "ERROR <br />";
-    }
+    // if ($RecordControl>0) {
+    //     echo "CONGRUGULATIONS <br />";
+    // } else {
+    //      echo "ERROR <br />";
+    // }
 
     $EmptyRoomsRecord = $SearchEmptyRoomQuery->fetch(PDO::FETCH_ASSOC);
     $selectedRoom = $EmptyRoomsRecord["room_id"];
-    echo $selectedRoom."<br />";
+    // echo $selectedRoom."<br />";
     
 ?>
 
@@ -75,7 +80,7 @@
                     echo $totalPrice;
                 }
             ?>
-             TL </h4>
+                TL </h4>
             <br>
         </div>
     </div>
@@ -95,6 +100,8 @@
     <input type="hidden" id="ComingCheckInDate" name="ComingCheckInDate" value="<?php echo $ComingCheckInDate;?>">
 
     <input type="hidden" id="ComingCheckOutDate" name="ComingCheckOutDate" value="<?php echo $ComingCheckOutDate;?>">
+
+    <input type="hidden" id="ComingCheckOutDate" name="ComingReservationId" value="<?php echo $ComingReservationId;?>">
 
     <input type="hidden" id="ComingNumberOfPerson" name="ComingNumberOfPerson"
         value="<?php echo $ComingNumberOfPerson;?>">

@@ -75,7 +75,7 @@
                     echo $totalPrice;
                 }
             ?>
-             TL </h4>
+            TL </h4>
             <br>
         </div>
     </div>

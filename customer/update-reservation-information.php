@@ -31,6 +31,16 @@
 </head>
 
 <body>
+<?php
+
+if (isset($_POST["reservation_id"])) {
+        $ComingReservationId		=	$_POST["reservation_id"];
+    } else {
+        $ComingReservationId		=	"";
+    }
+
+?>
+
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -40,7 +50,7 @@
 
                     <label for="check-in">New Check-in:</label>
                     <input type="date" class="form-control" id="check-in" name="checkin_date">
-
+                    <input type="hidden" value="<?php echo $ComingReservationId; ?>" id="reservation_id" name="reservation_id">
                     <br>
 
                     <label for="check-out">New Check-out:</label>
