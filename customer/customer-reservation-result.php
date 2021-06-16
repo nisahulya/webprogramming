@@ -31,15 +31,15 @@
     $SearchEmptyRoomQuery->execute([$ComingCheckInDate, $ComingCheckOutDate, $ComingNumberOfPerson]);;
     $RecordControl		=	$SearchEmptyRoomQuery->rowCount();
 
-    if ($RecordControl>0) {
-        echo "CONGRUGULATIONS <br />";
-    } else {
-         echo "ERROR <br />";
-    }
+    // if ($RecordControl>0) {
+    //     echo "CONGRUGULATIONS <br />";
+    // } else {
+    //      echo "ERROR <br />";
+    // }
 
     $EmptyRoomsRecord = $SearchEmptyRoomQuery->fetch(PDO::FETCH_ASSOC);
     $selectedRoom = $EmptyRoomsRecord["room_id"];
-    echo $selectedRoom."<br />";
+    // echo $selectedRoom."<br />";
     
 ?>
 
@@ -47,6 +47,9 @@
     <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6">
+            <br>
+            <br>
+            <br>
             <br>
             <p> We have a place for <span id="numberofperson"><?php echo $ComingNumberOfPerson ?></span>
                 people in room <span> <?php echo $selectedRoom ?> </span>
@@ -72,7 +75,8 @@
                     echo $totalPrice;
                 }
             ?>
-            </h4>
+             TL </h4>
+            <br>
         </div>
     </div>
 </div>

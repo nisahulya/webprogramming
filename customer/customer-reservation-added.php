@@ -17,7 +17,22 @@ $AddReservation->execute([$postComingCheckOutDate, $postselectedRoom, $postUseri
 $postComingCheckInDate, $postComingNumberOfPerson, $posttotalPrice]);
 $RecordControl		=	$AddReservation->rowCount();
 
-if ($RecordControl>0) {
+
+$ForReservationIdQuery =	$DatabaseConnection->prepare("SELECT reservation_id FROM reservation 
+WHERE checkout_date='".$postComingCheckOutDate."' AND room_id='".$postselectedRoom."'AND user_id='".$postUserid."'AND 
+checkin_date='".$postComingCheckInDate."' AND number_of_person='".$postComingNumberOfPerson."' AND total_price='".$posttotalPrice."'");
+
+$ForReservationIdQuery->execute();
+$RecordControl		=	$ForReservationIdQuery->rowCount();
+$ThisReservation = $ForReservationIdQuery->fetch(PDO::FETCH_ASSOC);
+$ThisReservationId = $ThisReservation["reservation_id"];
+// echo $ThisReservationId;
+
+$AddReservationToStatus	=	$DatabaseConnection->prepare("INSERT INTO status (room_id, reservation_id) values (?, ?)");
+$AddReservationToStatus->execute([$postselectedRoom, $ThisReservationId]);
+$RecordControlToStatus		=	$AddReservationToStatus->rowCount();
+
+if ($RecordControl>0 && $RecordControlToStatus>0) {
     echo "Reservation added";
 } else {
     echo "Error<br />";
