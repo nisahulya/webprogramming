@@ -9,13 +9,13 @@ $postselectedRoom = $_POST['selectedRoom'];
 $posttotalPrice = $_POST['totalPrice']; 
 $postUserid = $_POST['Userid'];    
 
-$AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation 
-(checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) 
-values (?, ?, ?, ?, ?, ?)");
+// $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation 
+// (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) 
+// values (?, ?, ?, ?, ?, ?)");
 
-$AddReservation->execute([$postComingCheckOutDate, $postselectedRoom, $postUserid,
-$postComingCheckInDate, $postComingNumberOfPerson, $posttotalPrice]);
-$RecordControl		=	$AddReservation->rowCount();
+// $AddReservation->execute([$postComingCheckOutDate, $postselectedRoom, $postUserid,
+// $postComingCheckInDate, $postComingNumberOfPerson, $posttotalPrice]);
+// $RecordControl		=	$AddReservation->rowCount();
 
 
 $ForReservationIdQuery =	$DatabaseConnection->prepare("SELECT reservation_id FROM reservation 
