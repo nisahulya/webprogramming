@@ -10,7 +10,7 @@
 <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <br>
+                <!-- <br>
                 <br>
                 <h4 for="check-in">Enter Dates:</h4>
                 <form class="form-inline" action="/action_page.php">
@@ -35,11 +35,11 @@
                 <br>
                 <form>
                     <input class="btn btn-info" type="button" value="Search" onclick="msg()">
-                </form>
+                </form> -->
             </div>
             <div class="col-sm-6">
                 <p id="cannottext">
-                    Rooms cannot be found according to the conditions you are looking for.
+                    Rooms cannot be found according to the <br> conditions you are looking for.
                 </p>
             </div>
             <br>

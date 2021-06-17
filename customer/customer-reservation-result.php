@@ -22,12 +22,12 @@
     $SearchEmptyRoomQuery =	$DatabaseConnection->prepare("SELECT room.room_id 
     FROM room 
     WHERE room.room_id NOT IN 
-(
+    (
     SELECT R.room_id 
 	FROM reservation R 
 	JOIN status S ON R.reservation_id = S.reservation_id 
-	WHERE R.checkin_date<? AND R.checkout_date>?
-) AND room.number_of_person = ?");
+	WHERE R.checkin_date<=? AND R.checkout_date>=?
+    ) AND room.number_of_person = ?");
     $SearchEmptyRoomQuery->execute([$ComingCheckInDate, $ComingCheckOutDate, $ComingNumberOfPerson]);;
     $RecordControl		=	$SearchEmptyRoomQuery->rowCount();
 
@@ -39,8 +39,15 @@
 
     $EmptyRoomsRecord = $SearchEmptyRoomQuery->fetch(PDO::FETCH_ASSOC);
     $selectedRoom = $EmptyRoomsRecord["room_id"];
-    // echo $selectedRoom."<br />";
+    echo $selectedRoom."<br />";
     
+?>
+
+<?php 
+    if (empty($selectedRoom)) {
+        header("Location: cannot-found-room.php");
+        exit();
+    }else{
 ?>
 
 <div class="container">
@@ -59,28 +66,28 @@
             <p id="p"></p>
             <br>
             <h4>Total Cost:
-                <?php 
+                <?php
                 $date1_ts = strtotime($ComingCheckInDate);
-                $date2_ts = strtotime($ComingCheckOutDate);
-                $diff = $date2_ts - $date1_ts;
-                $daysNumber = round($diff / 86400);
-                if($ComingNumberOfPerson==1){
-                    $totalPrice = $daysNumber*500;
-                    echo $totalPrice;
-                }elseif($ComingNumberOfPerson==2){
-                    $totalPrice = $daysNumber*900;
-                    echo $totalPrice;
-                }else{
-                    $totalPrice = $daysNumber*1200;
-                    echo $totalPrice;
-                }
-            ?>
+        $date2_ts = strtotime($ComingCheckOutDate);
+        $diff = $date2_ts - $date1_ts;
+        $daysNumber = round($diff / 86400);
+        if ($ComingNumberOfPerson==1) {
+            $totalPrice = $daysNumber*500;
+            echo $totalPrice;
+        } elseif ($ComingNumberOfPerson==2) {
+            $totalPrice = $daysNumber*900;
+            echo $totalPrice;
+        } else {
+            $totalPrice = $daysNumber*1200;
+            echo $totalPrice;
+        } ?>
             TL </h4>
             <br>
         </div>
     </div>
 </div>
 
+<?php  } ?>
 
 <?php 
 if (isset($_SESSION['User'])) {
