@@ -41,12 +41,12 @@
 // echo $ThisCheckoutDate; 
  
 
-?>
+    ?>
     <div class="container">
         <div class="row">
             <?php
-                echo "<table class='table table-hover' style='border-collapse: collapse; margin-left:auto; margin-right:auto; margin-top:50px;'>";
-                echo " <thead class='thead-light'> <tr> <th scope='col'>Check-in Date</th> 
+                echo "<table id='myTable 'class='table table-hover' style='border-collapse: collapse; margin-left:auto; margin-right:auto; margin-top:50px;'>";
+                echo " <thead class='thead-light'> <tr> <th scope='col'>res</th> <th scope='col'>Check-in Date</th> 
                 <th scope='col'>Check-out Date</th> <th scope='col'>Number of Person</th> <th scope='col'>Room Number</th> <th scope='col'>Update/Remove</th>
                 </tr> </thead>";
 
@@ -56,27 +56,29 @@
                     }
 
                     function current() {
-                        return "<td style=';'>" . parent::current(). "</td>";
+                        return "<td >" . parent::current(). "</td>";
+                        
                     }
-
+                    
                     function beginChildren() {
                         echo "<tr>";
                     }
 
                     function endChildren() {
-                        echo "<td style='text-align:center'> <button class='btn btn-success btn-xs'><i class='fas fa-pencil-alt'></i></button> 
-                        <button class='btn btn-danger btn-xs'> <i class='fas fa-times'></i> </button> </td> </tr>" . "\n";
+                        echo "<td style='text-align:center'> <button type='button' class='mybutton btn btn-success btn-xs'  ><i class='fas fa-pencil-alt'></i></button> 
+                        <button type='button' class='mybutton btn btn-danger btn-xs'  > <i class='fas fa-times'></i> </button> </td> </tr>" . "\n";
                     }
                 }
 
                 try {
                     $DatabaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stmt = $DatabaseConnection->prepare("SELECT checkin_date, checkout_date,number_of_person, room_id 
+                    $stmt = $DatabaseConnection->prepare("SELECT reservation_id,checkin_date, checkout_date,number_of_person, room_id 
                     FROM reservation WHERE user_id=? ");
                     $stmt->execute([$Userid]);
 
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                     
 
                     foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
                         echo $v;
@@ -88,6 +90,7 @@
 
                 echo "</table>";
                 ?>
+
             <!-- <br>
                 <br>
                 <br>
@@ -179,6 +182,12 @@
             <br>
         </div> -->
         </div>
+    <script>
+        $(".mybutton").click(function(){
+            var selectedReservationId = $(this).parent().siblings().eq(0).text()
+            alert(selectedReservationId);
+        });
+    </script>
 </body>
 
 <?php include 'footer.php'; ?>
