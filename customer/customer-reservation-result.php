@@ -39,7 +39,7 @@
 
     $EmptyRoomsRecord = $SearchEmptyRoomQuery->fetch(PDO::FETCH_ASSOC);
     $selectedRoom = $EmptyRoomsRecord["room_id"];
-    echo $selectedRoom."<br />";
+    // echo $selectedRoom."<br />";
     
 ?>
 
