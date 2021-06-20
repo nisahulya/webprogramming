@@ -33,11 +33,11 @@
 <body>
 <?php
 
-if (isset($_POST["reservation_id"])) {
-        $ComingReservationId		=	$_POST["reservation_id"];
-    } else {
-        $ComingReservationId		=	"";
-    }
+// if(!isset($_COOKIE["reservationId"])) {
+//   echo "Cookie named is not set!";
+// } else {
+//   echo $_COOKIE["reservationId"];
+// }
 
 ?>
 
@@ -50,7 +50,7 @@ if (isset($_POST["reservation_id"])) {
 
                     <label for="check-in">New Check-in:</label>
                     <input type="date" class="form-control" id="check-in" name="checkin_date">
-                    <input type="hidden" value="<?php echo $ComingReservationId; ?>" id="reservation_id" name="reservation_id">
+                    <input type="hidden" value="<?php echo $comingSelectedReservationId; ?>" id="reservation_id" name="reservation_id">
                     <br>
 
                     <label for="check-out">New Check-out:</label>
@@ -76,7 +76,12 @@ if (isset($_POST["reservation_id"])) {
             <br>
         </div>
     </div>
+    
 
+    <script>
+        var comingSelectedReservationId = localStorage.getItem("storageSelectedReservationId");
+        window.onload = console.log(comingSelectedReservationId);
+    </script>
 </body>
 
 <?php include 'footer.php'; ?>

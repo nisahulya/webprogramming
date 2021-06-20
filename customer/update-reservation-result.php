@@ -17,13 +17,19 @@
     } else {
         $ComingNumberOfPerson		=	"";
     }
-    if (isset($_POST["reservation_id"])) {
-        $ComingReservationId		=	$_POST["reservation_id"];
+    // if (isset($_POST["reservation_id"])) {
+    //     $ComingReservationId		=	$_POST["reservation_id"];
+    // } else {
+    //     $ComingReservationId		=	"";
+    // }
+
+    if(!isset($_COOKIE["reservationId"])) {
+        echo "Cookie named is not set!";
     } else {
-        $ComingReservationId		=	"";
+        $ComingReservationId =$_COOKIE["reservationId"];
+        echo  $ComingReservationId;
     }
 
-    // echo $ComingReservationId;
     $SearchEmptyRoomQuery =	$DatabaseConnection->prepare("SELECT room.room_id 
     FROM room 
     WHERE room.room_id NOT IN 
@@ -86,29 +92,39 @@
     </div>
 </div>
 
-<form action="reservation-changed.php" method="POST">
+<body>
+    <form action="reservation-changed.php" method="POST">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-                <input type="submit" name="submitbutton" value="Confirm" class="btn btn-info" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <input type="submit" name="submitbutton" value="Confirm" class="btn btn-info" />
+                </div>
             </div>
         </div>
-    </div>
 
-    <input type="hidden" id="ComingCheckInDate" name="ComingCheckInDate" value="<?php echo $ComingCheckInDate;?>">
+        <input type="hidden" id="ComingCheckInDate" name="ComingCheckInDate" value="<?php echo $ComingCheckInDate;?>">
 
-    <input type="hidden" id="ComingCheckOutDate" name="ComingCheckOutDate" value="<?php echo $ComingCheckOutDate;?>">
+        <input type="hidden" id="ComingCheckOutDate" name="ComingCheckOutDate"
+            value="<?php echo $ComingCheckOutDate;?>">
 
-    <input type="hidden" id="ComingCheckOutDate" name="ComingReservationId" value="<?php echo $ComingReservationId;?>">
+        <input type="hidden" id="ComingReservationId" name="ComingReservationId"
+            value="<?php echo $ComingReservationId;?>">
 
-    <input type="hidden" id="ComingNumberOfPerson" name="ComingNumberOfPerson"
-        value="<?php echo $ComingNumberOfPerson;?>">
+        <input type="hidden" id="ComingNumberOfPerson" name="ComingNumberOfPerson"
+            value="<?php echo $ComingNumberOfPerson;?>">
 
-    <input type="hidden" id="selectedRoom" name="selectedRoom" value="<?php echo $selectedRoom;?>">
+        <input type="hidden" id="selectedRoom" name="selectedRoom" value="<?php echo $selectedRoom;?>">
 
-    <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice;?>">
+        <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice;?>">
 
-    <input type="hidden" id="Userid" name="Userid" value="<?php echo $Userid;?>">
-</form>
+        <input type="hidden" id="Userid" name="Userid" value="<?php echo $Userid;?>">
+    </form>
+
+    <script>
+        var comingSelectedReservationId = localStorage.getItem("storageSelectedReservationId");
+        window.onload = console.log(comingSelectedReservationId);
+    </script>
+</body>
+
