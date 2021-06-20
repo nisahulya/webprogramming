@@ -5,8 +5,8 @@
 </head>
 <body>
 
-<h1>This is a Heading h1</h1>
-<p>This is a paragraph h2.</p>
+<h1></h1>
+<p>My web programing course</p>
 
 <!DOCTYPE html>
 <html>
@@ -15,9 +15,9 @@
 <?php
 echo "My first PHP script!";
 echo "<br>";
-echo "Nisaaa"."<br>";
+echo "Nisa"."<br>";
 
-echo "Hulya";
+echo "";
 ?>
 
 </body>

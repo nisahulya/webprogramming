@@ -103,7 +103,7 @@
       </a>     
 
       <?php if(isset($_SESSION["User"])){ ?>
-        <a href="" >New Reservation</a>
+        <a href="search-room.php" >New Reservation</a>
         <a href="">Hotel Reports</a>
         <a href="">Messages</a>
       <?php }else{ ?>
