@@ -22,35 +22,34 @@
 </head>
 
 <body>
+
     
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <br>
-                <br>
-                <h4 for="check-in">Enter Dates:</h4>
-                <form class="form-inline" action="/action_page.php">
+            <form action="select-room.php" method="post">
+                    <br>
+                    <h4 for="check-in">Enter Dates:</h4>
+
                     <label for="check-in">Check-in:</label>
-                    <input type="date" class="form-control" placeholder="Enter check-in" id="check-in">
-                </form>
-                <br>
-                <form class="form-inline" action="/action_page.php">
+                    <input type="date" class="form-control" id="check-in" name="checkin_date">
+
+                    <br>
+
                     <label for="check-out">Check-out:</label>
-                    <input type="date" class="form-control" placeholder="Enter check-out" id="check-out">
-                </form>
+                    <input type="date" class="form-control" id="check-out" name="checkout_date">
+                
                 <br>
                 <br>
                 <div>
-                    <h4 for="check-in">Enter Number of Guests:</h4>
-                    <form class="form-inline" action="/action_page.php">
-                        <label for="numberofguests">Number of Guests:</label>
-                        <input type="number" class="form-control" id="numberofguests">
-                    </form>
+                    <h4 for="check-in">Enter Number of Person:</h4>
+
+                    <label for="numberofguests">Number of Person:</label>
+                    <input type="number" class="form-control" id="numberofguests" name="number_of_person">
                 </div>
                 <br>
-                <h1 id="h1"></h1>
-                <form>
-                    <input id="searchbutton"class="btn btn-info" type="button" value="Search" onclick="changeColor()">
+
+                <input type="submit" class="btn btn-info"value="Search" >
                 </form>
             </div>
             <div class="col-sm-6">
@@ -58,7 +57,7 @@
                 <br>
                 <br>
                 <br>
-
+<!-- 
                 <div class="row">
                     <div class="col-sm-2">
                         <button id="room1" class="oda">Room1</button>
@@ -76,7 +75,7 @@
                         <button id="room9" class="oda">Room9</button>
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
         </div>
