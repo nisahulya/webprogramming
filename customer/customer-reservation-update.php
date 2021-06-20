@@ -69,9 +69,9 @@
                     function endChildren() {
                         echo "<td style='text-align:center'> 
                         
-                        <button type='button' class='mybutton btn btn-success btn-xs'  ><i class='fas fa-pencil-alt'></i></button>
+                        <button type='button' class='myupdatebutton btn btn-success btn-xs'  ><i class='fas fa-pencil-alt'></i></button>
 
-                        <button type='button' class='mybutton btn btn-danger btn-xs'  > <i class='fas fa-times'></i> </button>
+                        <button type='button' class='mydeletebutton btn btn-danger btn-xs'  > <i class='fas fa-times'></i> </button>
                         </td> </tr>" . "\n";
                     }
                 }
@@ -100,13 +100,20 @@
 
         <div id="sonuc"></div>
     <script type="text/javascript" language="javascript">
-        $(".mybutton").click(function(){
+        $(".myupdatebutton").click(function(){
             var selectedReservationId = $(this).parent().siblings().eq(0).text()
             console.log(selectedReservationId);
             localStorage.setItem("storageSelectedReservationId",selectedReservationId);
 
             document.cookie = "reservationId=" + selectedReservationId;
             location.href = "https://localhost/webprogramming/customer/update-reservation-information.php";
+        });
+
+        $(".mydeletebutton").click(function(){
+            var selectedReservationId = $(this).parent().siblings().eq(0).text()
+            
+            document.cookie = "reservationId=" + selectedReservationId;
+            location.href = "https://localhost/webprogramming/customer/reservation-deleted.php";
         });
 
     </script>

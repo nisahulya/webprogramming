@@ -24,10 +24,10 @@
     // }
 
     if(!isset($_COOKIE["reservationId"])) {
-        echo "Cookie named is not set!";
+        echo "Cookie is not set!";
     } else {
         $ComingReservationId =$_COOKIE["reservationId"];
-        echo  $ComingReservationId;
+        // echo  $ComingReservationId;
     }
 
     $SearchEmptyRoomQuery =	$DatabaseConnection->prepare("SELECT room.room_id 
