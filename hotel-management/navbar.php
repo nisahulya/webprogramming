@@ -100,13 +100,12 @@
     <div class="topnav" id="myTopnav">
       <a href="home.php" >
         <img src="../docs/images/logo.png" alt="logo" style="width:35px; height:25px;">
-      </a>
-      <a href="about-hotel.php" >About Hotel</a>
-      <a href="customer-reservation.php">New Reservation</a>
-      
+      </a>     
 
       <?php if(isset($_SESSION["User"])){ ?>
-        <a href="customer-reservation-update.php">My Reservations</a>
+        <a href="" >New Reservation</a>
+        <a href="">Hotel Reports</a>
+        <a href="">Messages</a>
       <?php }else{ ?>
         
       <?php } ?>
@@ -121,7 +120,7 @@
       <?php if(isset($_SESSION["User"])){ ?>
 
       <?php }else{ ?>
-        <a style="float:right" data-toggle="modal" data-target="#registerModal" href="">Sign-up</a>
+
       <?php } ?>
 
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -142,7 +141,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0">
-                    <form class="form-signin pb-2" action="memberlogin.php" method="post">
+                    <form class="form-signin pb-2" action="stafflogin.php" method="post">
                         <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
                         <label  class="sr-only" >User Name</label>
@@ -160,57 +159,6 @@
         </div>
       </div>
 
-
-      <div class="modal fade text-center" id="registerModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 170px;">New
-                        message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body p-0">
-                    <form class="form-signin pb-2" action="signupresult.php" method="post">
-                        <img class="mb-4" src="../docs/images/logo.png" alt="" width="72" height="72">
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign-up</h1>
-                        <label  class="sr-only">Username</label>
-                        <input type="text"  name="username"  class="form-control " placeholder="Username"
-                            required autofocus>
-
-                        <label for="userName" class="sr-only">First Name</label>
-                        <input type="text"  name="first_name" id="userName" class="form-control " placeholder="First Name"
-                            required autofocus>
-    
-                        <label for="userlastName" class="sr-only">Last Name</label>
-                        <input type="text"  name="last_name" id="userlastName" class="form-control "
-                            placeholder="Last Name" required>
-    
-                        <label for="userPhone" class="sr-only">Phone Number</label>
-                        <input type="text"  name="tel_no" id="userPhone" class="form-control "
-                            placeholder="Phone Number" required>
-
-                            <label for="userTcNo" class="sr-only">Tc No</label>
-                        <input type="text"  name="tc_no" id="userTC" class="form-control "
-                            placeholder="Tc No" required>
-    
-                        <label for="inputEmail" class="sr-only">E-Mail</label>
-                        <input type="email"  name="email" id="inputEmail" class="form-control " placeholder="E-Mail"
-                            required>
-    
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control"
-                            placeholder="Password" required>
-    
-                        <input  data-toggle="modal" data-target="#signupresultModal"
-                            class="btn btn-lg btn-success btn-block" type="submit"  value="Sign-up">
-                        <p class="my-2 text-muted p-0">&copy; nisahulya</p>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 
       <!-- Optional JavaScript -->
