@@ -32,7 +32,8 @@
     } else {
         $ComingtotalPrice		=	"";
     }
-    echo $ComingtotalPrice;
+    // echo var_dump($ComingtotalPrice);
+    // echo $ComingtotalPrice;
 
     if(!isset($_COOKIE["roomId"])) {
         echo "Cookie is not set!";
@@ -66,24 +67,27 @@
     $IsThereUserQuery =	$DatabaseConnection->prepare("SELECT user.user_id FROM user WHERE email=?");
     $IsThereUserQuery->execute([$Comingemail]);;
     $RecordControl		=	$IsThereUserQuery->rowCount();
-    $SelectedUserId =$IsThereUserQuery->fetch(PDO::FETCH_ASSOC);
-
+    $SelectedUserId = $IsThereUserQuery->fetch(PDO::FETCH_ASSOC);
+    $NowUserId = $SelectedUserId["user_id"];
+    echo $NowUserId;
     if ($RecordControl>0) {
         $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation 
         (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) 
         values (?, ?, ?, ?, ?, ?)");
 
-        $AddReservation->execute([$Comingcheckoutdate, $ComingroomId, $SelectedUserId,
+        $AddReservation->execute([$Comingcheckoutdate, $ComingroomId, $NowUserId,
         $Comingcheckindate, $Comingnumber_of_person, 
         $ComingtotalPrice]);
+        //echo $ComingtotalPrice;
         $RecordControl6		=	$AddReservation->rowCount();
-
+        //echo $RecordControl6;
         $ForReservationIdQuery =	$DatabaseConnection->prepare("SELECT reservation_id FROM reservation 
         WHERE checkout_date=? AND room_id=? AND user_id=? AND 
         checkin_date=?  AND number_of_person=?  AND total_price=? ");
 
-        $ForReservationIdQuery->execute([$Comingcheckoutdate, $ComingroomId, $SelectedUserId, $Comingcheckindate, $Comingnumber_of_person,
+        $ForReservationIdQuery->execute([$Comingcheckoutdate, $ComingroomId, $NowUserId, $Comingcheckindate, $Comingnumber_of_person,
         $ComingtotalPrice]);
+        //echo $ComingtotalPrice;
         $RecordControl2		=	$ForReservationIdQuery->rowCount();
         $ThisReservation = $ForReservationIdQuery->fetch(PDO::FETCH_ASSOC);
         $ThisReservationId = $ThisReservation["reservation_id"];
