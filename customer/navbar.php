@@ -107,6 +107,7 @@
 
       <?php if(isset($_SESSION["User"])){ ?>
         <a href="customer-reservation-update.php">My Reservations</a>
+        <a href="send-message.php">Message</a>
       <?php }else{ ?>
         
       <?php } ?>
