@@ -21,7 +21,7 @@
 
 
   if(($ControlNumber>0)){
-    $_SESSION["User"]	=	$ComingUserName;
+    $_SESSION["Staff"]	=	$ComingUserName;
     header("Location:successlogin.php" );
     exit(); 
   }else{

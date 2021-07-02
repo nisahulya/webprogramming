@@ -69,7 +69,7 @@
     $RecordControl		=	$IsThereUserQuery->rowCount();
     $SelectedUserId = $IsThereUserQuery->fetch(PDO::FETCH_ASSOC);
     $NowUserId = $SelectedUserId["user_id"];
-    echo $NowUserId;
+    //echo $NowUserId;
     if ($RecordControl>0) {
         $AddReservation			=	$DatabaseConnection->prepare("INSERT INTO reservation 
         (checkout_date, room_id, user_id, checkin_date, number_of_person, total_price) 

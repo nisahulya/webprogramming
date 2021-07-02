@@ -102,8 +102,9 @@
         <img src="../docs/images/logo.png" alt="logo" style="width:35px; height:25px;">
       </a>     
 
-      <?php if(isset($_SESSION["User"])){ ?>
+      <?php if(isset($_SESSION["Staff"])){ ?>
         <a href="search-room.php" >New Reservation</a>
+        <a href="reservations.php" >Reservations</a>
         <a href="">Hotel Reports</a>
         <a href="">Messages</a>
       <?php }else{ ?>
@@ -111,13 +112,13 @@
       <?php } ?>
 
     
-      <?php if(isset($_SESSION["User"])){ ?>
+      <?php if(isset($_SESSION["Staff"])){ ?>
       <a style="float:right"  href="exit.php">Logout</a>
       <?php }else{ ?>
         <a style="float:right" data-toggle="modal" data-target="#loginModal" href="">Login</a>
       <?php } ?>
 
-      <?php if(isset($_SESSION["User"])){ ?>
+      <?php if(isset($_SESSION["Staff"])){ ?>
 
       <?php }else{ ?>
 
@@ -134,8 +135,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 170px;">New
-                        message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 170px;"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
