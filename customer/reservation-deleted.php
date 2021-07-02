@@ -2,14 +2,7 @@
 <?php include 'footer.php'; ?>
 
 <?php 
-// $postComingCheckInDate = $_POST['ComingCheckInDate'];
-// $postComingCheckOutDate = $_POST['ComingCheckOutDate']; 
-// $postComingNumberOfPerson = $_POST['ComingNumberOfPerson']; 
-// $postselectedRoom = $_POST['selectedRoom']; 
-// $posttotalPrice = $_POST['totalPrice']; 
-// $postUserid = $_POST['Userid'];  
-// $postComingReservationId = $_POST['ComingReservationId']; 
-// $newReservationDate = date("Y-m-d H:i:s");
+
 
 if(!isset($_COOKIE["reservationId"])) {
     echo "Cookie is not set!";

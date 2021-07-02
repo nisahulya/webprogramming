@@ -3,13 +3,13 @@
 <?php
   require_once("../connect.php");
   if(isset($_POST["username"])){
-    $ComingUserName		=	Filter($_POST["username"]);
+    $ComingUserName		=	Security($_POST["username"]);
   }else{
     $ComingUserName		=	"";
   }
   
   if(isset($_POST["password"])){
-    $ComingPassword				=	Filter($_POST["password"]);
+    $ComingPassword				=	Security($_POST["password"]);
   }else{
     $ComingPassword				=	"";
   }

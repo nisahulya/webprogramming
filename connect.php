@@ -10,7 +10,7 @@ try{
 	die();
 }
 
-function Filter($Value){
+function Security($Value){
 	$One	=	trim($Value);
 	$Two	=	strip_tags($One);
 	$Three		=	htmlspecialchars($Two, ENT_QUOTES);

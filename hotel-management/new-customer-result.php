@@ -4,31 +4,31 @@
 <?php
 
     if (isset($_POST["name"])) {
-        $Comingname		=	$_POST["name"];
+        $Comingname		=	Security($_POST["name"]);
     } else {
         $Comingname		=	"";
     }
 
     if (isset($_POST["surname"])) {
-        $Comingsurname		=	$_POST["surname"];
+        $Comingsurname		=	Security($_POST["surname"]);
     } else {
         $Comingsurname	=	"";
     }
 
     if (isset($_POST["email"])) {
-        $Comingemail		=	$_POST["email"];
+        $Comingemail		=	Security($_POST["email"]);
     } else {
         $Comingemail		=	"";
     }
 
     if (isset($_POST["phonenumber"])) {
-        $Comingphonenumber	=	$_POST["phonenumber"];
+        $Comingphonenumber	=	Security($_POST["phonenumber"]);
     } else {
         $Comingphonenumber		=	"";
     }
 
     if (isset($_POST["totalPrice"])) {
-        $ComingtotalPrice	=	$_POST["totalPrice"];
+        $ComingtotalPrice	=	Security($_POST["totalPrice"]);
     } else {
         $ComingtotalPrice		=	"";
     }

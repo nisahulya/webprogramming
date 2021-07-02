@@ -3,22 +3,22 @@
 <?php
     
     if (isset($_POST["checkout_date"])) {
-        $ComingCheckOutDate		=	$_POST["checkout_date"];
+        $ComingCheckOutDate		=	Security($_POST["checkout_date"]);
     } else {
         $ComingCheckOutDate		=	"";
     }
     if (isset($_POST["checkin_date"])) {
-        $ComingCheckInDate		=	$_POST["checkin_date"];
+        $ComingCheckInDate		=	Security($_POST["checkin_date"]);
     } else {
         $ComingCheckInDate		=	"";
     }
     if (isset($_POST["number_of_person"])) {
-        $ComingNumberOfPerson		=	$_POST["number_of_person"];
+        $ComingNumberOfPerson		=	Security($_POST["number_of_person"]);
     } else {
         $ComingNumberOfPerson		=	"";
     }
     // if (isset($_POST["reservation_id"])) {
-    //     $ComingReservationId		=	$_POST["reservation_id"];
+    //     $ComingReservationId		=	Security($_POST["reservation_id"]);
     // } else {
     //     $ComingReservationId		=	"";
     // }

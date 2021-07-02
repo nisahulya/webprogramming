@@ -2,13 +2,13 @@
 <?php include 'footer.php'; ?>
 
 <?php 
-$postComingCheckInDate = $_POST['ComingCheckInDate'];
-$postComingCheckOutDate = $_POST['ComingCheckOutDate']; 
-$postComingNumberOfPerson = $_POST['ComingNumberOfPerson']; 
-$postselectedRoom = $_POST['selectedRoom']; 
-$posttotalPrice = $_POST['totalPrice']; 
-$postUserid = $_POST['Userid'];  
-$postComingReservationId = $_POST['ComingReservationId']; 
+$postComingCheckInDate = Security($_POST['ComingCheckInDate']);
+$postComingCheckOutDate = Security($_POST['ComingCheckOutDate']); 
+$postComingNumberOfPerson = Security($_POST['ComingNumberOfPerson']); 
+$postselectedRoom = Security($_POST['selectedRoom']); 
+$posttotalPrice = Security($_POST['totalPrice']); 
+$postUserid = Security( $_POST['Userid']);  
+$postComingReservationId = Security($_POST['ComingReservationId']) ; 
 $newReservationDate = date("Y-m-d H:i:s");
 
 $ChangeReservationQuery		=	$DatabaseConnection->prepare("UPDATE reservation SET checkin_date = ?, room_id = ?, reservation_date = ?,
