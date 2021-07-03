@@ -107,6 +107,7 @@
         <a href="reservations.php" >Reservations</a>
         <a href="">Hotel Reports</a>
         <a href="messages.php">Messages</a>
+        <!-- <a href="comments.php">Comments</a> -->
       <?php }else{ ?>
         
       <?php } ?>

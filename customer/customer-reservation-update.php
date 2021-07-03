@@ -72,6 +72,8 @@
                         <button type='button' class='myupdatebutton btn btn-success btn-xs'  ><i class='fas fa-pencil-alt'></i></button>
 
                         <button type='button' class='mydeletebutton btn btn-danger btn-xs'  > <i class='fas fa-times'></i> </button>
+
+                        <button type='button' class='myreviewbutton btn btn-info btn-xs'  > <i class='fas fa-spell-check'></i> </button>
                         </td> </tr>" . "\n";
                     }
                 }
@@ -114,6 +116,13 @@
             
             document.cookie = "reservationId=" + selectedReservationId;
             location.href = "https://localhost/webprogramming/customer/reservation-deleted.php";
+        });
+
+        $(".myreviewbutton").click(function(){
+            var selectedReservationId = $(this).parent().siblings().eq(0).text()
+            
+            document.cookie = "reservationId=" + selectedReservationId;
+            location.href = "https://localhost/webprogramming/customer/review.php";
         });
 
     </script>
