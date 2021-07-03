@@ -17,7 +17,9 @@ $ComingEmail		=	Security($_POST["email"]);
 $ComingSubject		=	Security($_POST["subject"]);
 $ComingMessage		=	Security($_POST["message"]);
 
-$MailGonder		=	new PHPMailer(true);
+$SendMail		=	new PHPMailer(true);
+$condition = false;
+
 try{
     $SendMail->SMTPDebug			=	0;
     $SendMail->isSMTP();
@@ -44,8 +46,30 @@ try{
     //$SendMail->Body    = 'Mail's Body';
     //$SendMail->AltBody = 'Mail's Body (HTML mail kabul etmeyen sunucular için)';
     $SendMail->send();
-    echo 'Mail Sended';
+    echo 'Mail Sended <br />';
+    $condition = true;
 }catch(Exception $e) {
     echo 'Mail Send Error<br />Error Description : ', $SendMail->ErrorInfo;
+}
+
+if($condition == true){
+
+    $newMessageDate = date("Y-m-d H:i:s");
+
+    $AddMessage			=	$DatabaseConnection->prepare("INSERT INTO message 
+    (text, date, user_id) 
+    values (?, ?, ?)");
+
+    $AddMessage->execute([$ComingMessage, $newMessageDate, $Userid]);
+    $RecordControl		=	$AddMessage->rowCount();
+
+    if ($RecordControl>0) {
+        echo "Message added to database";
+    } else {
+        echo "Error<br />";
+        echo "An unexpected error occurred during the message process.<br />";
+        echo "Please try again later.<br />";
+    }
+
 }
 ?>

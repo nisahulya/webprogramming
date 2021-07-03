@@ -106,7 +106,7 @@
         <a href="search-room.php" >New Reservation</a>
         <a href="reservations.php" >Reservations</a>
         <a href="">Hotel Reports</a>
-        <a href="">Messages</a>
+        <a href="messages.php">Messages</a>
       <?php }else{ ?>
         
       <?php } ?>

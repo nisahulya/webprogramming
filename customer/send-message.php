@@ -32,7 +32,7 @@
         </div>
         <!--Grid column-->
         <div  class="col-md-7 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+            <form id="contact-form" name="contact-form" action="send-message-result.php" method="POST">
 
                 <!--Grid row-->
                 <div class="row">
@@ -107,7 +107,7 @@
                 </li>
 
                 <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+ 90 234 567 89</p>
+                    <p>+ 90 242 567 42 66</p>
                 </li>
 
                 <li><i class="fas fa-envelope mt-4 fa-2x"></i>
