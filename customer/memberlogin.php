@@ -14,8 +14,10 @@
     $ComingPassword				=	"";
   }
 
+  $ComingPasswordWithMd5 = md5($ComingPassword);
+
   $ControlQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=? AND password=?");
-  $ControlQuery->execute([$ComingUserName, $ComingPassword]);
+  $ControlQuery->execute([$ComingUserName, $ComingPasswordWithMd5]);
 
 
   $ControlNumber			=	$ControlQuery->rowCount();

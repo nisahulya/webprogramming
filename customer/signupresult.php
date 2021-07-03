@@ -46,6 +46,8 @@ if(isset($_POST["tc_no"])){
 	$ComingTcNo		=	"";
 }
 
+$ComingPasswordWithMd5 = md5($ComingPassword);
+//echo $ComingPasswordWithMd5;
 
 $ControlQuery			=	$DatabaseConnection->prepare("SELECT * FROM user WHERE username=? OR email=?");
 $ControlQuery->execute([$ComingUsername, $ComingEmail]);
@@ -57,7 +59,7 @@ if($ComingNumber>0){
 }else{
 	$AddRecord			=	$DatabaseConnection->prepare("INSERT INTO user (username, password, first_name, last_name,
     email, tel_no, tc_no) values (?, ?, ?, ?, ?, ?, ?)");
-    $AddRecord->execute([$ComingUsername, $ComingPassword, $ComingFirstName, $ComingLastName,
+    $AddRecord->execute([$ComingUsername, $ComingPasswordWithMd5, $ComingFirstName, $ComingLastName,
     $ComingEmail, $ComingTelNo, $ComingTcNo]);
 	$ControlRecord		=	$AddRecord->rowCount();
 	
