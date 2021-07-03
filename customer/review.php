@@ -5,6 +5,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <style>
     .animated {
@@ -19,33 +20,62 @@
         color: #d17581;
     }
 
-    #post-review-box {
-        
+    #ico {
+        color: red;
+
     }
 
-    #new-review{
+    #warn {
+        color: red;
 
-        margin-top:20px;
     }
 
-    #save{
+    #post-review-box {}
 
-        margin-top:20px;
+    #new-review {
+
+        margin-top: 20px;
     }
 
-    #point{
+    #save {
 
-        margin-top:20px;
+        margin-top: 20px;
     }
 
-    #my-container{
+    #point {
 
-        margin-top:50px;
+        margin-top: 20px;
+    }
+
+    #my-container {
+
+        margin-top: 50px;
     }
     </style>
 </head>
 
 <body>
+
+    <?php 
+    
+    if(!isset($_COOKIE["reservationId"])) {
+        echo "Cookie is not set!";
+    } else {
+        $ComingReservationId =$_COOKIE["reservationId"];
+        //echo  $ComingReservationId;
+    }
+
+    $nowDate = date("Y-m-d H:i:s");
+
+    $GetCheckoutDateQuery		=	$DatabaseConnection->prepare("SELECT checkout_date FROM reservation
+    WHERE reservation_id = ?");
+
+    $GetCheckoutDateQuery->execute([$ComingReservationId]);
+    $RecordControl		=	$GetCheckoutDateQuery->rowCount();
+    $GetingCheckoutDates = $GetCheckoutDateQuery->fetch(PDO::FETCH_ASSOC);
+    $GetingCheckoutDate = $GetingCheckoutDates["checkout_date"];
+
+    if (strtotime($GetingCheckoutDate) < strtotime('now')) { ?>
     <div class="container" id="my-container">
         <div class="row" style="margin-top:40px;">
             <div class="col-md-6">
@@ -57,21 +87,21 @@
 
                     <div class="row" id="post-review-box" style="display:none;">
                         <div class="col-md-12">
-                            <form accept-charset="UTF-8" action="home.php" method="post">
-                                <input id="ratings-hidden" name="point" type="hidden">
-                                <textarea class="form-control animated" cols="50" id="point" name="point"
-                                    placeholder="Enter your points here between 0 and 5" rows="5"></textarea>
-
-                                <input id="ratings-hidden" name="rating" type="hidden">
-                                <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                            <form accept-charset="UTF-8" action="review-add.php" method="post">
+                                <input id="ratings-hidden" name="comment" type="hidden">
+                                <textarea class="form-control animated" cols="50" name="comment"
                                     placeholder="Enter your review here..." rows="5"></textarea>
+
+                                <input id="ratings-hidden" name="point" type="hidden">
+                                <textarea class="form-control animated" cols="50" id="new-review" name="point"
+                                    placeholder="Enter your points here between 0 and 5." rows="5"></textarea>
 
                                 <!-- <div class="text-right">
                                     <div class="stars starrr" data-rating="0"></div> -->
-                                    
-                                        
+
+
                                 <button class="btn btn-info " id="save" type="submit">Save</button>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -149,7 +179,7 @@
                         },
                         g = p.width();
                     p.data("autosize") || (p.data("autosize", !0), ("border-box" === p.css(
-                        "box-sizing") || "border-box" === p.css("-moz-box-sizing") ||
+                            "box-sizing") || "border-box" === p.css("-moz-box-sizing") ||
                         "border-box" === p.css("-webkit-box-sizing")) && (w = p.outerHeight() -
                         p.height()), c = Math.max(parseInt(p.css("minHeight"), 10) - w || 0, p
                         .height()), p.css({
@@ -303,5 +333,27 @@
         });
     });
     </script>
+    <?php
+    } else {?>
+        <div class="row mt-5">
+            <div class="col-md-3">
+
+            </div>
+
+            <div class="col-md-1">
+                <i id="ico" class="fas fa-exclamation fa-8x"></i>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <h3 id="warn"> Please select a completed reservation.</h3>
+            </div>
+
+            <div class="col-md-4">
+            
+            </div>
+
+        </div>
+    <?php } ?>
+
 
 </body>

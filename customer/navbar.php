@@ -114,7 +114,7 @@
 
     
       <?php if(isset($_SESSION["User"])){ ?>
-      <a style="float:right"  href="exit.php">Logout</a>
+      <a style="float:right"  href="exit.php"><?php echo "(" . $UserFirstName . ")  "; ?>Logout</a>
       <?php }else{ ?>
         <a style="float:right" data-toggle="modal" data-target="#loginModal" href="">Login</a>
       <?php } ?>
