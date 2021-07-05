@@ -44,7 +44,14 @@
 ?>
 
 <?php 
-    if (empty($selectedRoom)) {
+    $currentDate = date("Y-m-d H:i:s");
+    
+    $comingCheckinDateWithoutSecurity = $_POST['ComingCheckInDate'];
+    $comingCheckoutDateWithoutSecurity = $_POST['ComingCheckOutDate'];
+
+    if ($comingCheckinDateWithoutSecurity <= $currentDate && $comingCheckoutDateWithoutSecurity <= $comingCheckinDateWithoutSecurity) {
+        echo "Please choose invalid dates";
+    }else if(empty($selectedRoom)) {
         header("Location: cannot-found-room.php");
         exit();
     }else{
