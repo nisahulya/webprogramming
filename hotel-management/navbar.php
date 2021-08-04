@@ -105,9 +105,9 @@
       <?php if(isset($_SESSION["Staff"])){ ?>
         <a href="search-room.php" >New Reservation</a>
         <a href="reservations.php" >Reservations</a>
-        <a href="">Hotel Reports</a>
         <a href="messages.php">Messages</a>
         <a href="reviews.php">Reviews</a>
+        <a href="reports.php">Reports</a>
         <!-- <a href="comments.php">Comments</a> -->
       <?php }else{ ?>
         
